@@ -584,3 +584,173 @@ function escapeHtml(value) {
     );
 
 }
+/* =========================================================
+   VOICE INPUT
+   ========================================================= */
+
+let activeRecognition = null;
+
+function startVoiceInput(fieldId) {
+
+  const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+  if (!SpeechRecognition) {
+
+    alert(
+      "Voice input is not supported in this browser. Please use Google Chrome or Microsoft Edge."
+    );
+
+    return;
+  }
+
+  const field =
+    document.getElementById(fieldId);
+
+  if (!field) {
+    return;
+  }
+
+  const languageSelect =
+    document.getElementById("voiceLanguage");
+
+  const language =
+    languageSelect?.value || "en-IN";
+
+  const status =
+    document.getElementById(
+      fieldId + "VoiceStatus"
+    );
+
+  /*
+     Stop previous recognition
+  */
+
+  if (activeRecognition) {
+    try {
+      activeRecognition.stop();
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+
+  const recognition =
+    new SpeechRecognition();
+
+  activeRecognition =
+    recognition;
+
+  recognition.lang =
+    language;
+
+  recognition.continuous =
+    false;
+
+  recognition.interimResults =
+    false;
+
+  recognition.maxAlternatives =
+    1;
+
+
+  if (status) {
+    status.textContent =
+      "🎙️ Listening...";
+  }
+
+
+  recognition.onstart =
+    () => {
+
+      if (status) {
+        status.textContent =
+          "🔴 Listening... Speak now";
+      }
+
+    };
+
+
+  recognition.onresult =
+    (event) => {
+
+      const transcript =
+        event
+          .results[0][0]
+          .transcript
+          .trim();
+
+      if (!transcript) {
+        return;
+      }
+
+      const existing =
+        field.value.trim();
+
+      field.value =
+        existing
+          ? existing + " " + transcript
+          : transcript;
+
+
+      if (status) {
+        status.textContent =
+          "✓ Voice added";
+      }
+
+    };
+
+
+  recognition.onerror =
+    (event) => {
+
+      console.error(
+        "Speech recognition error:",
+        event.error
+      );
+
+      if (status) {
+
+        if (
+          event.error ===
+          "not-allowed"
+        ) {
+
+          status.textContent =
+            "Microphone permission denied.";
+
+        } else {
+
+          status.textContent =
+            "Could not recognize your voice.";
+
+        }
+
+      }
+
+    };
+
+
+  recognition.onend =
+    () => {
+
+      activeRecognition =
+        null;
+
+      if (
+        status &&
+        status.textContent.includes(
+          "Listening"
+        )
+      ) {
+
+        status.textContent =
+          "";
+
+      }
+
+    };
+
+
+  recognition.start();
+}

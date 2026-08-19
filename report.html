@@ -261,43 +261,17 @@
     <option value="ml-IN">മലയാളം (Malayalam)</option>
   </select>
 </label>
+
         
-<!-- DESCRIPTION -->
+<!-- What happened? -->
 <label>
-  What happened?
-
-  <div class="voice-field">
-    <textarea
-      id="description"
-      rows="5"
-      placeholder="Briefly describe the emergency..."
-      required
-    ></textarea>
-
-    <button
-      type="button"
-      class="voice-btn"
-      onclick="startVoiceInput('description')"
-      aria-label="Voice input for what happened"
-      title="Speak"
-    >
-      🎙️
-    </button>
-  </div>
-
-  <small class="voice-status" id="descriptionVoiceStatus"></small>
-</label>
-
-
-<!-- PROOF / ADDITIONAL INFORMATION -->
-<label>
-  Proof / Additional Information
+  What happened? 
 
   <div class="voice-field">
     <textarea
       id="proof"
       rows="4"
-      placeholder="Describe any proof, visible damage, people affected, nearby landmarks, etc..."
+      placeholder="Briefly describe the emergency..."
     ></textarea>
 
     <button
@@ -309,6 +283,9 @@
     >
       🎙️
     </button>
+    <small>
+    Optional: Describe about the incident.
+  </small>
   </div>
 
   <small class="voice-status" id="proofVoiceStatus"></small>

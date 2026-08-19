@@ -265,11 +265,12 @@
         
 <!-- What happened? -->
 <label>
-  What happened? 
+  What happened?
+  <span class="optional-label">(Optional)</span>
 
   <div class="voice-field">
     <textarea
-      id="proof"
+      id="description"
       rows="4"
       placeholder="Briefly describe the emergency..."
     ></textarea>
@@ -277,32 +278,35 @@
     <button
       type="button"
       class="voice-btn"
-      onclick="startVoiceInput('proof')"
-      aria-label="Voice input for proof"
+      onclick="startVoiceInput('description')"
+      aria-label="Voice input for what happened"
       title="Speak"
     >
       🎙️
     </button>
-    <small>
-    Optional: Describe about the incident.
-  </small>
   </div>
 
-  <small class="voice-status" id="proofVoiceStatus"></small>
+  <small class="voice-status" id="descriptionVoiceStatus"></small>
+
+  <small class="field-hint">
+    Optional: Describe what happened. You can type or use voice input.
+  </small>
 </label>
 
 
 <!-- PROOF IMAGE -->
 <label>
   Proof Image
+  <span class="optional-label">(Optional)</span>
+
   <input
     type="file"
     id="proofImage"
     accept="image/*"
   >
 
-  <small>
-    Optional: upload a photo of the incident.
+  <small class="field-hint">
+    Optional: Upload a photo of the incident.
   </small>
 </label>
 

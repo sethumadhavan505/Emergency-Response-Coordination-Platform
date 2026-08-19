@@ -1528,3 +1528,77 @@ button {
     width: 100%;
   }
 }
+
+/* =========================================================
+   VOICE INPUT
+   ========================================================= */
+
+.voice-field {
+  position: relative;
+  width: 100%;
+}
+
+.voice-field textarea {
+  width: 100%;
+  padding-right: 58px;
+  box-sizing: border-box;
+}
+
+.voice-btn {
+  position: absolute;
+
+  right: 12px;
+  bottom: 12px;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  border: 1px solid #dfe6ee;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.voice-btn:hover {
+
+  transform: scale(1.08);
+
+  background: #f6f8fb;
+
+  box-shadow:
+    0 5px 15px
+    rgba(0, 0, 0, 0.10);
+}
+
+.voice-btn:active {
+
+  transform: scale(0.95);
+
+}
+
+.voice-status {
+
+  display: block;
+
+  margin-top: 6px;
+
+  font-size: 12px;
+
+  color: #60748c;
+
+  min-height: 18px;
+}
